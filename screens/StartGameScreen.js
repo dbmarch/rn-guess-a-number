@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native'
 import Card from '../components/Card'
 import Input from '../components/Input'
+import Start from '../components/Start'
 import Colors from '../constants/colors'
 
 const StartGameScreen = () =>{
@@ -41,7 +42,7 @@ const StartGameScreen = () =>{
       }}>
          <View style={styles.screen}>
             <Text style={styles.title}>Start a New Game!</Text>
-            <Card style={styles.inputContainer}>
+            {!confirmed && <Card style={styles.inputContainer}>
                <Text >Select a Number</Text>
                <Input 
                   style={styles.input} 
@@ -61,8 +62,8 @@ const StartGameScreen = () =>{
                      <Button title="Confirm" color={Colors.primary} onPress={confirmInputHandler}/>
                   </View>
                </View>
-            </Card>
-            <Text>{confirmedOutput}</Text>
+            </Card>}
+            {confirmed && <Card style ={styles.start} ><Start number = {selectedNumber}/></Card>} 
          </View>
    </TouchableWithoutFeedback>
 )}
@@ -95,6 +96,12 @@ const styles = StyleSheet.create({
    input: {
       width: 50,
       textAlign: 'center'
+   },
+   start: {
+      marginVertical: 10,
+      width: 250,
+      maxWidth: '80%',
+      alignItems: 'center',
    }
 
  });
