@@ -23,7 +23,6 @@ const GameScreen = ({userChoice, onGameOver}) => {
    useEffect(()=>{
       if (currentGuess === userChoice) {
          onGameOver(rounds)
-         setRounds (0)
       }
    }, [currentGuess, userChoice, onGameOver])
 
