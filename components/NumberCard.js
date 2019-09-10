@@ -1,20 +1,17 @@
 import React from 'react'
 import {View, Button, Text, StyleSheet } from 'react-native'
 import Colors  from '../constants/colors';
+import NumberContainer from './NumberContainer'
 
-const Start = (props) => {
+const NumberCard = (props) => {
    return (
-   <View style = {{...styles.start, ...props.style}}>
+   <View style = {{...styles.numberContainer, ...props.style}}>
          <View style = {styles.textField}>
               <Text style= {styles.textField}>Your Number</Text>
          </View>
-
-         <View style = {styles.box}>
-            <Text style={styles.boxText}>{props.number}</Text>
-         </View>
-         
+         <NumberContainer>{props.number}</NumberContainer>
          <View  style= {{...styles.textField, ...styles.button}}>
-               <Button  color = 'green' title = "START"/>
+               <Button  color = 'green' title = "START" onPress = {props.onStartGame}/>
          </View>
          
    </View>
@@ -23,7 +20,7 @@ const Start = (props) => {
 
 
 const styles = StyleSheet.create({
-   start: {
+   numberContainer: {
       padding: 5,
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -55,4 +52,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Start
+export default NumberCard

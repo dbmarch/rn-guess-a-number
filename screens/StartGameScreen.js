@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native'
 import Card from '../components/Card'
 import Input from '../components/Input'
-import Start from '../components/Start'
+import NumberCard from '../components/NumberCard'
 import Colors from '../constants/colors'
 
-const StartGameScreen = () =>{
+const StartGameScreen = ({onStartGame}) =>{
    const [enteredValue, setEnteredValue] = useState('')
    const [confirmed, setConfirmed] = useState(false)
    const [selectedNumber, setSelectedNumber] = useState(0)
@@ -29,11 +29,6 @@ const StartGameScreen = () =>{
       setConfirmed(true)
       setSelectedNumber(chosenNumber)
       setEnteredValue('')
-   }
-
-   let confirmedOutput 
-   if (confirmed) {
-      confirmedOutput = <Text>Chosen Number: {selectedNumber}</Text>
    }
 
    return (
@@ -63,7 +58,7 @@ const StartGameScreen = () =>{
                   </View>
                </View>
             </Card>}
-            {confirmed && <Card style ={styles.start} ><Start number = {selectedNumber}/></Card>} 
+            {confirmed && <Card style ={styles.start} ><NumberCard number = {selectedNumber} onStartGame={()=>onStartGame(selectedNumber)}/></Card>} 
          </View>
    </TouchableWithoutFeedback>
 )}
