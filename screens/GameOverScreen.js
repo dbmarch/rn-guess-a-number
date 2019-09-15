@@ -17,8 +17,8 @@ const GameOverScreen = ({roundsNumber, userNumber, onRestart}) => {
             resizeMode = 'cover' 
             />
          </View>
-         <View>
-            <BodyText style = {styles.text}>Your phone needed {' '}
+         <View style={styles.resultsContainer}>
+            <BodyText style = {styles.resultText}>Your phone needed {' '}
                <Text style={styles.highlight}>
                   {roundsNumber}
                </Text> rounds to guess the number{' '}
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
       overflow: 'hidden',
       marginVertical: 30
    }, 
+   resultsContainer: {
+      marginHorizontal: 30,
+      marginVertical: 15
+   },
+   resultText: {
+      textAlign: 'center',
+      fontSize: 20
+   },
    image: {
       width: '100%',
       height: '100%',
