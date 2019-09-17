@@ -19,7 +19,7 @@ const generateRandomBetween = (min, max, exclude) => {
 
 const renderListItem = (value, numOfRound) => {
    return (
-   <View key= {value} style={styles.listItem}>
+   <View key= {numOfRound} style={styles.listItem}>
       <BodyText>#{numOfRound}</BodyText>
       <BodyText>{value}</BodyText>
    </View>
@@ -71,15 +71,16 @@ const GameScreen = ({userChoice, onGameOver}) => {
                {/* <Ionicons name='md-add' size={24} color='white'/> */}
             </MainButton>
          </Card>
-         <View style={styles.list}>
-         <ScrollView>
-            {pastGuesses.map(guess=>renderListItem(guess))}
+         <View style={styles.listContainer}>
+         <ScrollView contentContainerStyle={styles.list}>
+            {pastGuesses.map((guess,index)=>renderListItem(guess,pastGuesses.length-index))}
          </ScrollView>
          </View>
       </View>
    )
 }
-
+// For android to scroll, the list needs a flex:1
+// use flexGrow to keep the list scroll stationary
 
 const styles = StyleSheet.create({
    screen: {
@@ -94,16 +95,25 @@ const styles = StyleSheet.create({
       width: 400,
       maxWidth: '90%'
    },
-   list: {
+   listContainer: {
+      flex: 1,
       width: '80%'
    },
+   list: {
+      // flex: 1,
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-end'
+   },
    listItem: {
+      width: '60%',
       borderColor: '#ccc',
       borderWidth: 1,
       padding: 15,
       marginVertical: 10,
       backgroundColor: 'white',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      justifyContent: 'space-around'
    }
 })
 
