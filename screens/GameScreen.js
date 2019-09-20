@@ -101,16 +101,16 @@ const styles = StyleSheet.create({
    },
    listContainer: {
       flex: 1,
-      width: '80%'
+      width: '60%'
    },
    list: {
       // flex: 1,
       flexGrow: 1,
-      alignItems: 'center',
+      // alignItems: 'center',
       justifyContent: 'flex-end'
    },
    listItem: {
-      width: '60%',
+      width: '100%',
       borderColor: '#ccc',
       borderWidth: 1,
       padding: 15,
