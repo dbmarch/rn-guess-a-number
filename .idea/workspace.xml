@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb0964cc-4cbf-4fa4-ae42-05e3316620d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/GameOverScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/GameOverScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/GameScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/GameScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/StartGameScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/StartGameScreen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +88,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2258" y="259" width="1440" height="810" extended-state="0" />
+    <frame x="2232" y="114" width="1440" height="810" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3203952" />

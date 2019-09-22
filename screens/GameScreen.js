@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
-import{View, FlatList, Text, StyleSheet, Alert} from 'react-native'
+import{View, FlatList, Text, StyleSheet, Alert, Dimensions} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
 import NumberContainer from '../components/NumberContainer'
 import Card from '../components/Card'
@@ -45,9 +45,9 @@ const GameScreen = ({userChoice, onGameOver}) => {
          return 
       } 
       if (direction === 'lower') {
-         currentHigh.current = currentGuess
+         currentHigh.current = currentGuess -1
       } else{
-         currentLow.current = currentGuess
+         currentLow.current = currentGuess + 1
       }
       const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess)
    
@@ -55,7 +55,11 @@ const GameScreen = ({userChoice, onGameOver}) => {
       setPastGuesses(current=>[nextNumber.toString(), ...current ] )
    }
 
-   console.info ('Guesses', pastGuesses)
+   let listContainerStyle = styles.listContainer
+
+   if (Dimensions.get('window').width  < 350) {
+      listContainerStyle = styles.listContainerBig
+   }
 
    return (
       <View style = {styles.screen}>
@@ -71,7 +75,7 @@ const GameScreen = ({userChoice, onGameOver}) => {
                {/* <Ionicons name='md-add' size={24} color='white'/> */}
             </MainButton>
          </Card>
-         <View style={styles.listContainer}>
+         <View style={listContainerStyle}>
          {/* <ScrollView contentContainerStyle={styles.list}>
             {pastGuesses.map((guess,index)=>renderListItem(guess,pastGuesses.length-index))}
          </ScrollView> */}
@@ -95,13 +99,18 @@ const styles = StyleSheet.create({
    buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginTop : 20,
+      marginTop : Dimensions.get('window').height > 600 ? 20 : 10,
       width: 400,
       maxWidth: '90%'
    },
    listContainer: {
       flex: 1,
-      width: '60%'
+      // width: '60%'
+      width: Dimensions.get('window').width > 350 ? '60%' : '80%'
+   },
+   listContainerBig: {
+      flex: 1,
+      width:'80%'
    },
    list: {
       // flex: 1,
