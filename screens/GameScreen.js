@@ -71,11 +71,11 @@ const GameScreen = ({userChoice, onGameOver}) => {
 
    let listContainerStyle = styles.listContainer
 
-   if (Dimensions.get('window').width  < 350) {
+   if (availableDeviceWidth  < 350) {
       listContainerStyle = styles.listContainerBig
    }
 
-   if (Dimensions.get('window').height < 500) {
+   if (availableDeviceHeight < 500) {
       return (
          <View style = {styles.screen}>
          <Text> Opponent's Guess</Text>
