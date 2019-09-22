@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {View, Button, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
 import Card from '../components/Card'
 import Input from '../components/Input'
@@ -11,10 +11,21 @@ const StartGameScreen = ({onStartGame}) =>{
    const [enteredValue, setEnteredValue] = useState('')
    const [confirmed, setConfirmed] = useState(false)
    const [selectedNumber, setSelectedNumber] = useState(0)
+   const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4)
 
    const numberInputHandler = inputText => {
       setEnteredValue(inputText.replace(/[^0-9]/g, ''))
    }
+
+   useEffect(()=> {
+      const updateLayout = () => {
+         setButtonWidth (Dimensions.get('window').width/4)
+      }
+      Dimensions.addEventListener('change', updateLayout)
+      return ()=>{
+         Dimensions.removeEventListener('change', updateLayout)
+      }
+   })
 
    const resetInputHandler = () =>{
       setEnteredValue('')
@@ -54,10 +65,10 @@ const StartGameScreen = ({onStartGame}) =>{
                   value = {enteredValue}
                 />
                <View style = {styles.buttonContainer}>
-                  <View style = {styles.button} >
+                  <View style = {{width: buttonWidth}}>
                      <Button title="Reset" color ={Colors.accent} onPress={resetInputHandler}/>
                   </View>
-                  <View style = {styles.button} >
+                  <View style = {{width: buttonWidth}}>
                      <Button title="Confirm" color={Colors.primary} onPress={confirmInputHandler}/>
                   </View>
                </View>
@@ -80,12 +91,12 @@ const styles = StyleSheet.create({
    title: {
       marginVertical: 10,
    },
-   button: {
-      // width: 90,
-      width: Dimensions.get('window').width/4,
-   },
+   // button: {
+   //    // width: 90,
+   //    width: Dimensions.get('window').width/4,
+   // },
    inputContainer:{
-      width: 300,
+      width:Dimensions.get('window').width * 0.8,
       maxWidth: '80%',
       alignItems: 'center',
    },
