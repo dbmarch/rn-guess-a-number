@@ -11,7 +11,7 @@ const StartGameScreen = ({onStartGame}) =>{
    const [enteredValue, setEnteredValue] = useState('')
    const [confirmed, setConfirmed] = useState(false)
    const [selectedNumber, setSelectedNumber] = useState(0)
-   const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4)
+   const [availableWidth, setAvailableWidth] = useState(Dimensions.get('window').width)
 
    const numberInputHandler = inputText => {
       setEnteredValue(inputText.replace(/[^0-9]/g, ''))
@@ -19,7 +19,7 @@ const StartGameScreen = ({onStartGame}) =>{
 
    useEffect(()=> {
       const updateLayout = () => {
-         setButtonWidth (Dimensions.get('window').width/4)
+         setAvailableWidth(Dimensions.get('window').width)
       }
       Dimensions.addEventListener('change', updateLayout)
       return ()=>{
@@ -52,7 +52,7 @@ const StartGameScreen = ({onStartGame}) =>{
       }}>
          <View style={styles.screen}>
             <TitleText >Start a New Game!</TitleText>
-            {!confirmed && <Card style={styles.inputContainer}>
+            {!confirmed && <Card style={{...styles.inputContainer, width: availableWidth}}>
                <BodyText style={styles.text}>Select a Number</BodyText>
                <Input 
                   style={styles.input} 
@@ -65,10 +65,10 @@ const StartGameScreen = ({onStartGame}) =>{
                   value = {enteredValue}
                 />
                <View style = {styles.buttonContainer}>
-                  <View style = {{width: buttonWidth}}>
+                  <View style = {{width: availableWidth/4}}>
                      <Button title="Reset" color ={Colors.accent} onPress={resetInputHandler}/>
                   </View>
-                  <View style = {{width: buttonWidth}}>
+                  <View style = {{width: availableWidth/4}}>
                      <Button title="Confirm" color={Colors.primary} onPress={confirmInputHandler}/>
                   </View>
                </View>
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
    //    width: Dimensions.get('window').width/4,
    // },
    inputContainer:{
-      width:Dimensions.get('window').width * 0.8,
       maxWidth: '80%',
       alignItems: 'center',
    },
